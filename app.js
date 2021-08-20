@@ -14,12 +14,21 @@ document.getElementById('keypad').addEventListener('click',function(event){
 document.getElementById('submit').addEventListener('click', function(){
     const pin = document.getElementById('pin-number').value;
     const givenPin = document.getElementById('calc-display').value;
+    const trycount = document.getElementById('try-count').innerText;
     if(pin == givenPin){
         document.getElementById('success').style.display = 'block';
         document.getElementById('error').style.display = 'none';
+    }
+    else if(trycount == 1){
+        document.getElementById('submit').disabled = true;
+        document.getElementById('submit').style.background = 'gray';
+        document.getElementById('action').innerText = "Your access has denied."
+
     }else{
         document.getElementById('error').style.display = 'block';
         document.getElementById('success').style.display = 'none';
+        document.getElementById('try-count').innerText = parseInt(trycount) - 1;
+
     }
     document.getElementById('calc-display').value = '';
 })
